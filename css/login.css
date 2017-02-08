@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    background-image: url(../images/marvel_login.jpg);
+}
+
+table{
+	font-weight: bold;
+	color: white;
+}
+
+#rowBtnLogin{
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #AFE1FE;
+}
+
+a.underlined
+{
+   text-decoration:underline;
+}
+
