@@ -8,6 +8,22 @@ function verifySession()
 	{
 		window.location='login.html';
 	}
+	document.getElementById('activeUsrName').textContent=activeSession.usrName;
+	if(activeSession.usrRol=='administrator')
+	{
+		document.getElementById('adminLink').style.display = 'visible';
+	}
+	else
+	{
+		document.getElementById('adminLink').style.display = 'none';
+	}
+}
+
+function closeSession()
+{
+	sessionStorage.removeItem('activeUsr');
+	window.location = "index.html";
 }
 
 window.onload = verifySession;
+

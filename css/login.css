@@ -10,7 +10,7 @@ html {
 body {
     display: table-cell;
     vertical-align: middle;
-    background-image: url(../images/marvel_login.jpg);
+    background-image: url(../images/fondo_1.jpg);
 }
 
 table{
@@ -32,3 +32,6 @@ a.underlined
    text-decoration:underline;
 }
 
+.errorMsg{
+    color: red;
+}

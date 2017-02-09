@@ -18,12 +18,27 @@ function loginSite(){
 		}
 		if(flag)
 		{
-
-			window.location = "welcome.html";
+			window.location = "index.html";
 		}
 		else
 		{
-			alert('You dont have an account in this site. Please create an account ;)');
+			document.querySelector('#loginError').innerHTML='You dont have an account in this site.<br/> Please create an account ;)';
+
 		}
 	}
+	else
+	{
+		document.querySelector('#loginError').innerHTML='You have to write your user and password';
+	}
+}
+
+document.getElementById('txtUser').focus();
+document.getElementById('txtUser').select();
+document.addEventListener("keydown", keyDownTextField, false);
+
+function keyDownTextField(e) {
+	var keyCode = e.keyCode;
+  	if(keyCode==13) {
+  		loginSite();
+  	} 
 }

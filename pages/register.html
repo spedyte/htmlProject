@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<title>Comics Armando</title>
+</head>
+
+<body>
+<div id="container">
+		<div id="header">
+        	<h1>Comics Armando</h1>
+            <h2> <span id="titlePage"> New user </span></h2>
+            <h2><span id="activeUsrName"></span> | <a id="linkLogout" href="#"></a></h2>
+        </div>   
+        
+        <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="login.html">Login</a></li>
+                <!--<li class="menuitem" id="adminLink"><a href="#">Admin</a></li>
+                <li class="menuitem"><a href="#">Products</a></li>
+                <li class="menuitem"><a href="#">Services</a></li>
+                <li class="menuitem"><a href="#">Contact</a></li>-->
+            </ul>
+        </div>
+
+          <div id="carousel">
+            <img class="mySlides" src="../images/carousel_1.png">
+            <img class="mySlides" src="../images/carousel_2.png">
+            <img class="mySlides" src="../images/carousel_3.png">
+            <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+            <a class="w3-btn-floating w3-display-right" onclick="plusDivs(+1)">&#10095;</a>
+        </div>      
+        
+        <div id="leftmenu">
+
+            <div id="leftmenu_top"></div>
+
+				<div id="leftmenu_main">    
+                
+                <h3>Links</h3>
+                        
+                <ul>
+                    <!--<li><a href="#">SEO</a></li>
+                    <li><a href="#">PHP</a></li>
+                    <li><a href="#">Ajax</a></li>
+                    <li><a href="#">jQuery</a></li>
+                    <li><a href="#">Web design</a></li>
+                    <li><a href="#">Web Programming</a></li>
+                    <li><a href="#">Content Creation</a></li>
+                    <li><a href="#">Internet Marketing</a></li>
+                    <li><a href="#">XHTML Templates</a></li>-->
+                </ul>
+            </div>
+              <div id="leftmenu_bottom"></div>
+        </div>
+        
+
+        
+        
+		<div id="content">
+        
+        
+            <div id="content_top"></div>
+            <div id="content_main">
+                <h2>Please fill your information </h2>
+                <p>&nbsp;</p>
+               	<p>&nbsp;</p>
+
+                <table width="70%">
+                    <!--name-->
+                    <tr>
+                        <td width="30%">
+                            Name:
+                        </td>
+                        <td>
+                            <input type="text" id="txtName"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <span id="errorName" class="errorMsg">7 characters at least are requiered</span>
+                        </td>
+                    </tr>
+                    <!--pwd-->
+                    <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input type="Password" id="txtPwd"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <!--pwd-->
+                    <tr>
+                        <td>
+                            Confirm Password:
+                        </td>
+                        <td>
+                            <input type="Password" id="txtPwdCon"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <span id="errorPwd" class="errorMsg">7 characters at least are requiered</span>
+                        </td>
+                    </tr>
+                    <!--email-->
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <input type="text" id="txtEmail"/>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                        <td>
+                            <span id="errorEmail" class="errorMsg">introduce a valida email direction</span>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                        <td>
+                            <span id="goodRegister" class="goodMsg">introduce a valida email direction</span>
+                        </td>
+                    </tr>
+                     <tr>
+                         <td></td>
+                        <td>
+                            <span id="userExist" class="errorMsg">User already exists!!!</span>
+                        </td>
+                    </tr>
+                    <!--submit-->
+                    <tr>
+                        <td colspan="2" id="rowBtnRegister">
+                            <input type="button" id="btnRegister" value="Register" onclick="saveUser()">
+                        </td>
+                    </tr>
+                </table>
+
+                <p>&nbsp;</p>
+            </div>
+        <div id="content_bottom">
+        </div>
+      </div>
+      <div id="footer">
+        <!--<h3>
+            <a href="http://www.bryantsmith.com">bryantsmith</a>
+        </h3>-->
+        <!-- Facebook -->
+        <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /> ComicsArmando
+        </a>
+<!-- Twitter -->
+        <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /> @ComicsArmando
+        </a>
+        <!-- Google+ -->
+        <a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" /> ComicsArmandoOficial
+        </a>
+        
+        <!-- Email -->
+        <a href="mailto:?spedyteman@gmail.com">
+            <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" /> Contact Us
+        </a>
+       </div>
+   </div>
+
+            
+<script type="text/javascript" src="../js/carousel.js"></script>
+<script src="../js/register.js"></script>
+</body>
+</html>

@@ -7,10 +7,8 @@
   <title>Login</title>
   <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
-    <script src="../js/initialization.js"></script>
-    <script src="../js/login.js"></script>
 </head>
-<body>
+<body >
 	<header></header>
 	<nav></nav>
 	<aside></aside>
@@ -31,8 +29,13 @@
 	   	</tr>
 	   	<tr>
 	   		<td></td>
-	   		<td id="rowBtnLogin"><input type="Button" id="btnLogin" value="Login" onclick="loginSite()"></td>
+	   		<td id="rowBtnLogin"><input type="button" id="btnLogin" onclick="loginSite()" value="Login"></input></td>
+
 	   	</tr>
+	   	<tr>
+	    	<td colspan="2" class="errorMsg" id="loginError">
+	    	</td>
+	    </tr>
 		<tr>
 	    	<td colspan="2">
 	    		Do you need an account?</a>
@@ -40,10 +43,12 @@
 	    </tr>
 	    <tr>
 	    	<td colspan="2">
-	    	  <a href="#">Click here to register...</a>
+	    	  <a href="register.html">Click here to register...</a>
 	    	</td>
 	    </tr>
 	   </table>
 	</section>
+    <script src="../js/initialization.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
