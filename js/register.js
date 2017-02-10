@@ -73,13 +73,13 @@ function saveUser(){
 	{
 		if(!existUser(document.getElementById('txtName').value,document.getElementById('txtPwd').value))
 		{
-			var validUsrs = JSON.parse(localStorage.getItem('usuarios'));
+			var validUsrs = JSON.parse(localStorage.getItem('users'));
 			validUsrs.push({'userId':validUsrs.length+1,
 				'usrName':document.getElementById('txtName').value,
 				'usrPwd':document.getElementById('txtPwd').value,
 				'usrEmail':document.getElementById('txtEmail').value,
 				'usrRol':'user'});
-			localStorage.setItem('usuarios', JSON.stringify(validUsrs));
+			localStorage.setItem('users', JSON.stringify(validUsrs));
 			document.getElementById('btnRegister').style.display='none';
 			document.querySelector('#goodRegister').innerHTML='Succesful register!!!!  Please go to Login Page';
 			document.getElementById('goodRegister').style.visibility='visible';
@@ -94,7 +94,7 @@ function saveUser(){
 function existUser(userName,userPwd)
 {
 	// Retrieve the object from storage
-		var validUsrs = JSON.parse(localStorage.getItem('usuarios'));
+		var validUsrs = JSON.parse(localStorage.getItem('users'));
 		var flag= false;
 		//look for the user
 		for (i = 0; i < validUsrs.length; i++) { 

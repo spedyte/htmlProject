@@ -5,7 +5,7 @@ function loginSite(){
 	if(usr && pwd)
 	{
 		// Retrieve the object from storage
-		var validUsrs = JSON.parse(localStorage.getItem('usuarios'));
+		var validUsrs = JSON.parse(localStorage.getItem('users'));
 		var flag= false;
 		//look for the user
 		for (i = 0; i < validUsrs.length; i++) { 

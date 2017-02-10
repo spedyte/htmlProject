@@ -147,7 +147,7 @@ width:204px;
 text-align:left;
 }
 
-#leftmenu_main ul li a, #leftmenu_main ul li a:visited
+#leftmenu_main ul li a
 {
 	display:block;
 list-style: none;
@@ -168,19 +168,19 @@ font-weight:bold;
 
 #leftmenu_main ul li a:hover
 {
-color:#87BCF8;
-	
-	
+color:#87BCF8;	
 }
 
-
-
+#leftmenu_main ul li a:focus, .active
+{
+ background-color: #4F90FB;
+}
 
 #content
 {
 display:block;
 float:left;
-width:689px;
+width:736px;
 height:auto;
 padding-left:10px;
 padding-top:15px;
