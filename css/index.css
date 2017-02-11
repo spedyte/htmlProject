@@ -2,3 +2,12 @@
 	background:#3C7FF9 ;
 	color: white;
 }
+
+#tableSearch{
+	width: 100%;
+	border: 1;
+}
+
+#txtSearch{
+	width: 80%;
+}

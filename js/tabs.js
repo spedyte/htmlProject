@@ -18,6 +18,8 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
     tabOption=tabName;
+
+    createTabs(searchOption,tabName,"");
 }
 
 // Get the element with id="defaultOpen" and click on it
