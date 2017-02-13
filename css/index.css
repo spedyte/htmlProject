@@ -11,3 +11,9 @@
 #txtSearch{
 	width: 80%;
 }
+
+#popularDiv, #qualDiv, #topDiv, #recoDiv{
+	height: 440px;
+	direction:ltr; 
+    overflow:auto; 
+}

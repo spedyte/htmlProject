@@ -43,10 +43,11 @@
                 <h3>Links</h3>
                         
                 <ul>
-                    <li><a href="#" onclick="showContent(this)">Popular</a></li>
+                    <li><a href="#" onclick="showContent(this)">General</a></li>
                     <li><a href="#" onclick="showContent(this)">Qualifications</a></li>
                     <li><a href="#" onclick="showContent(this)">Top Searches</a></li>
                     <li><a href="#" onclick="showContent(this)">Recommended</a></li>
+                    <li><a href="#" onclick="showContent(this)">Not recommended</a></li>
                 </ul>
             </div>
               <div id="leftmenu_bottom"></div>
@@ -75,7 +76,7 @@
                 </table>
 
                 <!--Div Popular-->
-                <div class="divsOnContent">
+                <div class="divsOnContent" id="generalDiv">
                     <ul class="tab">
                       <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Genres')" id="defaultOpen">Genres</a></li>
                       <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Editions')">Editions</a></li>
@@ -99,6 +100,8 @@
                     </div>
                 </div>
 
+                <!--Div Qualifications-->
+                <div id="popularDiv" class="divsOnContent"></div>
                 <!--Div Qualifications-->
                 <div id="qualDiv" class="divsOnContent"></div>
                 <!--Div Top searces-->

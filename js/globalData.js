@@ -3,7 +3,7 @@ var pathApplication='file///:C:/Users/armando.castaneda/Documents/Visual%Studio%
 
 //number of cols for the table of covers
 var numberColsComicCovers=3;
-var searchOption='Popular';
+var searchOption='General';
 var tabOption='Genres';
 
 function verifySession()
@@ -13,15 +13,17 @@ function verifySession()
 	{
 		window.location='login.html';
 	}
-	document.getElementById('activeUsrName').textContent=activeSession.usrName;
+	var userType="";
 	if(activeSession.usrRol=='administrator')
 	{
 		document.getElementById('adminLink').style.display = 'visible';
+		userType=" (admin)"; 
 	}
 	else
 	{
 		document.getElementById('adminLink').style.display = 'none';
 	}
+	document.getElementById('activeUsrName').textContent=activeSession.usrName +userType;
 }
 
 function closeSession()

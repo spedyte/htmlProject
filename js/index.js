@@ -1,27 +1,33 @@
 
 createTabs(searchOption,tabOption,"");
-//hide(document.getElementsByClassName('divsOnContent'));
-//document.getElementById('welcomeDiv').style.display ='block';
+
+document.getElementById('txtSearch').onkeypress = function (e) {
+            var keyCode = e.keyCode;
+  	if(keyCode==13) {
+  		createTabs(searchOption,tabOption,document.getElementById('txtSearch').value);
+  	} };
+
 
 function showContent(el)
 {
-	//hide(document.getElementsByClassName('divsOnContent'));
 	searchOption=el.innerHTML;
+	createTabs(searchOption,"","");
 }
 
 function createTabs(opcion, tab,wordToSearch){
-
-	var queryResult2 ;
+	var queryResult2 , queryResult ;
 	var html='';
 	switch (opcion) {
-		case 'Popular':
+		case 'General':
+					hide(document.getElementsByClassName('divsOnContent'));
+					document.getElementById('generalDiv').style.display = 'block';
 					var queryGeners;
 					switch (tab) 
 					{
 						case 'Genres':
 							if(wordToSearch) 
 							{
-								//obtain the geners
+								//obtain the geners (especific)
 								
 								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('geners')))
 										.Where("$.gnrName == '"+wordToSearch+"'")							
@@ -96,7 +102,7 @@ function createTabs(opcion, tab,wordToSearch){
 						case 'Editions':
 							if(wordToSearch) 
 							{
-								//obtain the editions
+								//obtain the editions (especific)
 								
 								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('editions')))
 										.Where("$.editionsName == '"+wordToSearch+"'")							
@@ -169,7 +175,7 @@ function createTabs(opcion, tab,wordToSearch){
 						case 'News':
 							if(wordToSearch) 
 							{
-								//obtain the characters
+								//obtain the new dates (especific)
 								
 								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.mainCharacter")
 										.Where("$.mainCharacter == '"+wordToSearch+"'")
@@ -177,24 +183,23 @@ function createTabs(opcion, tab,wordToSearch){
 							}
 							else
 							{
-									//obtain the geners
-								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-										.OrderByDescending("$.date")
+									//obtain the new dates
+								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.date")
+										.OrderByDescending("$.date").Take(5)
 				    					.ToArray();
 							}
 							
+						
 				    		html+='<table border="0" width="100%">';		
 				    		for(i=0;i<queryGeners.length;i++)
 				    		{
-				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i].mainCharacter+'</td></tr>';
+				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i].date+'</td></tr>';
 				                rowsToComics = retunrNumberOfRows(Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.mainCharacter == '"+queryGeners[i].mainCharacter+"'")
+				    					.Where("$.date == '"+queryGeners[i].date+"'")
 				    					.ToArray().length);
-				    			//alert(rowsToComics);
 				    			queryResult2=Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.mainCharacter == '"+queryGeners[i].mainCharacter+"'")
+				    					.Where("$.date == '"+queryGeners[i].date+"'")
 				    					.ToArray();
-				    			//alert(queryResult2);	
 				    			var cont=0;
 				    			for(j=0;j<rowsToComics;j++)
 				    			{
@@ -241,16 +246,15 @@ function createTabs(opcion, tab,wordToSearch){
 							break;
 						case 'Characters':
 							if(wordToSearch) 
-							{
-								//obtain the characters
-								
+							{								
+								//we obtain the characters (especific)
 								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.mainCharacter")
 										.Where("$.mainCharacter == '"+wordToSearch+"'")
 				    					.ToArray();
 							}
 							else
 							{
-									//obtain the geners
+								//we obtain the character
 								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.mainCharacter")
 										.OrderBy("$.mainCharacter")
 				    					.ToArray();
@@ -263,11 +267,9 @@ function createTabs(opcion, tab,wordToSearch){
 				                rowsToComics = retunrNumberOfRows(Enumerable.From(JSON.parse(localStorage.getItem('comics')))
 				    					.Where("$.mainCharacter == '"+queryGeners[i].mainCharacter+"'")
 				    					.ToArray().length);
-				    			//alert(rowsToComics);
 				    			queryResult2=Enumerable.From(JSON.parse(localStorage.getItem('comics')))
 				    					.Where("$.mainCharacter == '"+queryGeners[i].mainCharacter+"'")
 				    					.ToArray();
-				    			//alert(queryResult2);	
 				    			var cont=0;
 				    			for(j=0;j<rowsToComics;j++)
 				    			{
@@ -316,25 +318,240 @@ function createTabs(opcion, tab,wordToSearch){
 							// statements_def
 							break;
 				}
+				document.getElementById(tab).innerHTML=html;
+			break;
+
+		case 'Popular':
+			hide(document.getElementsByClassName('divsOnContent'));
+			document.getElementById('popularDiv').style.display = 'visible';
 			break;
 		case 'Qualifications':
-			//document.getElementById('qualDiv').style.display ='block';
-			// statements_1
+			if(!wordToSearch) 
+			{								
+				hide(document.getElementsByClassName('divsOnContent'));
+				//we obtain the comics
+				queryResult= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct()
+						.OrderByDescending("$.rate")
+    					.ToArray();
+			
+	    		html+='<table border="0" width="100%">';		
+	    		var cont=0;
+	    		for(i=0;i<queryResult.length;i++)
+	    		{
+	    				html+='<tr>';
+	    				for(k=0;k< numberColsComicCovers;k++)
+	    				{
+	    					if(cont<queryResult.length)
+	    					{
+		    					html+='<td>';
+			    					html+='<table>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+='<img height="150px" width="100px" src="../images/covers/'+queryResult[cont].coverImg+'">';
+				                            html+='</td>';
+				                        html+='</tr>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+=queryResult[cont].name;
+				                            html+='</td>';
+				                        html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td colspan="2">';
+			                                    html+= queryResult[cont].rate+' &hearts;';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td>';
+			                                	if(queryResult[cont].isRecommend)
+			                                    	html+='&radic;recommended ';
+			                                	else
+			                                		html+='&otimes;not recommended';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                        html+='</table>';
+			                    html+='</td>';
+		                    }
+		                    cont++;
+	    				}
+		                 html+='</tr>';
+		    	}
+				html+='</table>';
+				document.getElementById('qualDiv').innerHTML=html;
+				document.getElementById('qualDiv').style.display = 'block';
+			}
 			break;
 		case 'Top Searches':
-			// statements_1
-			//document.getElementById('topDiv').style.display ='block';
+			
+			if(!wordToSearch) 
+			{								
+				hide(document.getElementsByClassName('divsOnContent'));
+				//we obtain the comics
+				queryResult= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct()
+						.OrderByDescending("$.rate").Take(5)
+    					.ToArray();
+			
+	    		html+='<table border="0" width="100%">';		
+	    		var cont=0;
+	    		for(i=0;i<queryResult.length;i++)
+	    		{
+	    				html+='<tr>';
+	    				for(k=0;k< numberColsComicCovers;k++)
+	    				{
+	    					if(cont<queryResult.length)
+	    					{
+		    					html+='<td>';
+			    					html+='<table>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+='<img height="150px" width="100px" src="../images/covers/'+queryResult[cont].coverImg+'">';
+				                            html+='</td>';
+				                        html+='</tr>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+=queryResult[cont].name;
+				                            html+='</td>';
+				                        html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td colspan="2">';
+			                                    html+= queryResult[cont].rate+' &hearts;';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td>';
+			                                	if(queryResult[cont].isRecommend)
+			                                    	html+='&radic;recommended ';
+			                                	else
+			                                		html+='&otimes;not recommended';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                        html+='</table>';
+			                    html+='</td>';
+		                    }
+		                    cont++;
+	    				}
+		                 html+='</tr>';
+		    	}
+				html+='</table>';
+				document.getElementById('topDiv').innerHTML=html;
+				document.getElementById('topDiv').style.display = 'block';
+			}
 			break;
 		case 'Recommended':
-			// statements_1
-			//document.getElementById('recoDiv').style.display ='block';
+			if(!wordToSearch) 
+			{								
+				hide(document.getElementsByClassName('divsOnContent'));
+				//we obtain the comics
+				queryResult= Enumerable.From(JSON.parse(localStorage.getItem('comics')))
+						.Where("$.isRecommend == 1")
+    					.ToArray();
+			
+	    		html+='<table border="0" width="100%">';		
+	    		var cont=0;
+	    		for(i=0;i<queryResult.length;i++)
+	    		{
+	    				html+='<tr>';
+	    				for(k=0;k< numberColsComicCovers;k++)
+	    				{
+	    					if(cont<queryResult.length)
+	    					{
+		    					html+='<td>';
+			    					html+='<table>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+='<img height="150px" width="100px" src="../images/covers/'+queryResult[cont].coverImg+'">';
+				                            html+='</td>';
+				                        html+='</tr>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+=queryResult[cont].name;
+				                            html+='</td>';
+				                        html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td colspan="2">';
+			                                    html+= queryResult[cont].rate+' &hearts;';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td>';
+			                                	if(queryResult[cont].isRecommend)
+			                                    	html+='&radic;recommended ';
+			                                	else
+			                                		html+='&otimes;not recommended';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                        html+='</table>';
+			                    html+='</td>';
+		                    }
+		                    cont++;
+	    				}
+		                 html+='</tr>';
+		    	}
+				html+='</table>';
+				document.getElementById('topDiv').innerHTML=html;
+				document.getElementById('topDiv').style.display = 'block';
+			}
+			break;	
+			case 'Not recommended':
+			if(!wordToSearch) 
+			{								
+				hide(document.getElementsByClassName('divsOnContent'));
+				//we obtain the comics
+				queryResult= Enumerable.From(JSON.parse(localStorage.getItem('comics')))
+						.Where("$.isRecommend == 0")
+    					.ToArray();
+			
+	    		html+='<table border="0" width="100%">';		
+	    		var cont=0;
+	    		for(i=0;i<queryResult.length;i++)
+	    		{
+	    				html+='<tr>';
+	    				for(k=0;k< numberColsComicCovers;k++)
+	    				{
+	    					if(cont<queryResult.length)
+	    					{
+		    					html+='<td>';
+			    					html+='<table>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+='<img height="150px" width="100px" src="../images/covers/'+queryResult[cont].coverImg+'">';
+				                            html+='</td>';
+				                        html+='</tr>';
+				                        html+='<tr>';
+				                            html+='<td colspan="2">';
+				                                html+=queryResult[cont].name;
+				                            html+='</td>';
+				                        html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td colspan="2">';
+			                                    html+= queryResult[cont].rate+' &hearts;';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                            html+='<tr>';
+			                                html+='<td>';
+			                                	if(queryResult[cont].isRecommend)
+			                                    	html+='&radic;recommended ';
+			                                	else
+			                                		html+='&otimes;not recommended';
+			                                html+='</td>';
+			                            html+='</tr>';
+			                        html+='</table>';
+			                    html+='</td>';
+		                    }
+		                    cont++;
+	    				}
+		                 html+='</tr>';
+		    	}
+				html+='</table>';
+				document.getElementById('topDiv').innerHTML=html;
+				document.getElementById('topDiv').style.display = 'block';
+			}
 			break;	
 		default:
 			// statements_def
-			document.getElementById('welcomeDiv').style.display ='block';
+			//document.getElementById('welcomeDiv').style.display ='block';
 			break;
 	}
-	document.getElementById(tab).innerHTML=html;
+	 document.getElementById('txtSearch').value='';
 }
 
 
