@@ -29,29 +29,30 @@ function createTabs(opcion, tab,wordToSearch){
 							{
 								//obtain the geners (especific)
 								
-								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('geners')))
-										.Where("$.gnrName == '"+wordToSearch+"'")							
+								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.genre")	
+										.Where("$.genre == '"+wordToSearch+"'")							
 				    					.OrderBy("$.gnrName")
+				    					.Select("$.genre")
 				    					.ToArray();
 							}
 							else
 							{
 									//obtain the geners
-							queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('geners')))							
-				    					.OrderBy("$.gnrName")
+								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.genre")							
+				    					.OrderBy("$.genre")
+    									.Select("$.genre")
 				    					.ToArray();
 							}
-							
 				    		html+='<table border="0" width="100%">';		
 				    		for(i=0;i<queryGeners.length;i++)
 				    		{
-				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i].gnrName+'</td></tr>';
+				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i]+'</td></tr>';
 				                rowsToComics = retunrNumberOfRows(Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.genre == '"+queryGeners[i].gnrName+"'")
+				    					.Where("$.genre == '"+queryGeners[i]+"'")
 				    					.ToArray().length);
 				    			
 				    			queryResult2=Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.genre == '"+queryGeners[i].gnrName+"'")
+				    					.Where("$.genre == '"+queryGeners[i]+"'")
 				    					.ToArray();
 				    			var cont=0;
 				    			for(j=0;j<rowsToComics;j++)
@@ -84,6 +85,11 @@ function createTabs(opcion, tab,wordToSearch){
 						                                    	html+='&radic;recommended ';
 						                                	else
 						                                		html+='&otimes;not recommended';
+						                                html+='</td>';
+						                            html+='</tr>';
+						                            html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult2[cont].searches;
 						                                html+='</td>';
 						                            html+='</tr>';
 						                        html+='</table>';
@@ -104,29 +110,31 @@ function createTabs(opcion, tab,wordToSearch){
 							{
 								//obtain the editions (especific)
 								
-								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('editions')))
-										.Where("$.editionsName == '"+wordToSearch+"'")							
-				    					.OrderBy("$.editionsName")
+								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.edition")	
+										.Where("$.edition == '"+wordToSearch+"'")							
+				    					.OrderBy("$.edition")
+				    					.Select("$.edition")
 				    					.ToArray();
 							}
 							else
 							{
 									//obtain the editions
-							queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('editions')))							
-				    					.OrderBy("$.editionsName")
+				    					queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.edition")							
+				    					.OrderBy("$.edition")
+    									.Select("$.edition")
 				    					.ToArray();
 							}
 							
 				    		html+='<table border="0" width="100%">';		
 				    		for(i=0;i<queryGeners.length;i++)
 				    		{
-				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i].editionsName+'</td></tr>';
+				    			html+='<tr> <td colspan="'+numberColsComicCovers+'" class="rowGenre">'+queryGeners[i]+'</td></tr>';
 				                rowsToComics = retunrNumberOfRows(Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.edition == '"+queryGeners[i].editionsName+"'")
+				    					.Where("$.edition == '"+queryGeners[i]+"'")
 				    					.ToArray().length);
 				    			
 				    			queryResult2=Enumerable.From(JSON.parse(localStorage.getItem('comics')))
-				    					.Where("$.edition == '"+queryGeners[i].editionsName+"'")
+				    					.Where("$.edition == '"+queryGeners[i]+"'")
 				    					.ToArray();
 				    			var cont=0;
 				    			for(j=0;j<rowsToComics;j++)
@@ -161,6 +169,11 @@ function createTabs(opcion, tab,wordToSearch){
 						                                		html+='&otimes;not recommended';
 						                                html+='</td>';
 						                            html+='</tr>';
+						                            html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult2[cont].searches;
+						                                html+='</td>';
+						                            html+='</tr>';
 						                        html+='</table>';
 						                    html+='</td>';
 					                    }
@@ -177,7 +190,7 @@ function createTabs(opcion, tab,wordToSearch){
 							{
 								//obtain the new dates (especific)
 								
-								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.mainCharacter")
+								queryGeners= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct("$.date")
 										.Where("$.mainCharacter == '"+wordToSearch+"'")
 				    					.ToArray();
 							}
@@ -231,6 +244,11 @@ function createTabs(opcion, tab,wordToSearch){
 						                                    	html+='&radic;recommended ';
 						                                	else
 						                                		html+='&otimes;not recommended';
+						                                html+='</td>';
+						                            html+='</tr>';
+						                             html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult2[cont].searches;
 						                                html+='</td>';
 						                            html+='</tr>';
 						                        html+='</table>';
@@ -303,6 +321,11 @@ function createTabs(opcion, tab,wordToSearch){
 						                                		html+='&otimes;not recommended';
 						                                html+='</td>';
 						                            html+='</tr>';
+						                             html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult2[cont].searches;
+						                                html+='</td>';
+						                            html+='</tr>';
 						                        html+='</table>';
 						                    html+='</td>';
 					                    }
@@ -368,6 +391,11 @@ function createTabs(opcion, tab,wordToSearch){
 			                                		html+='&otimes;not recommended';
 			                                html+='</td>';
 			                            html+='</tr>';
+			                             html+='<tr>';
+		                                html+='<td>';
+		                                    	html+='searches : '+queryResult[cont].searches;
+		                                html+='</td>';
+		                            	html+='</tr>';
 			                        html+='</table>';
 			                    html+='</td>';
 		                    }
@@ -387,7 +415,8 @@ function createTabs(opcion, tab,wordToSearch){
 				hide(document.getElementsByClassName('divsOnContent'));
 				//we obtain the comics
 				queryResult= Enumerable.From(JSON.parse(localStorage.getItem('comics'))).Distinct()
-						.OrderByDescending("$.rate").Take(5)
+						.Where("$.searches > 450")
+						.OrderByDescending("$.searches")
     					.ToArray();
 			
 	    		html+='<table border="0" width="100%">';		
@@ -424,6 +453,11 @@ function createTabs(opcion, tab,wordToSearch){
 			                                		html+='&otimes;not recommended';
 			                                html+='</td>';
 			                            html+='</tr>';
+			                             html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult[cont].searches;
+						                                html+='</td>';
+						                            html+='</tr>';
 			                        html+='</table>';
 			                    html+='</td>';
 		                    }
@@ -479,6 +513,11 @@ function createTabs(opcion, tab,wordToSearch){
 			                                		html+='&otimes;not recommended';
 			                                html+='</td>';
 			                            html+='</tr>';
+			                             html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult[cont].searches;
+						                                html+='</td>';
+						                            html+='</tr>';
 			                        html+='</table>';
 			                    html+='</td>';
 		                    }
@@ -534,6 +573,11 @@ function createTabs(opcion, tab,wordToSearch){
 			                                		html+='&otimes;not recommended';
 			                                html+='</td>';
 			                            html+='</tr>';
+			                             html+='<tr>';
+						                                html+='<td>';
+						                                    	html+='searches : '+queryResult[cont].searches;
+						                                html+='</td>';
+						                            html+='</tr>';
 			                        html+='</table>';
 			                    html+='</td>';
 		                    }

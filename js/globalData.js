@@ -23,6 +23,11 @@ function verifySession()
 	{
 		document.getElementById('adminLink').style.display = 'none';
 	}
+	var arrayURL=window.location.href.split('\/'); 
+	if(activeSession.usrRol!='administrator' && arrayURL[arrayURL.length-1]=="newComics.html")
+	{
+		window.location='login.html';
+	}
 	document.getElementById('activeUsrName').textContent=activeSession.usrName +userType;
 }
 

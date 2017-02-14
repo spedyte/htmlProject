@@ -11,14 +11,15 @@
 <div id="container">
 		<div id="header">
         	<h1>Comics Armando</h1>
-            <h2> <span id="titlePage"> New user </span></h2>
-            <h2><span id="activeUsrName"></span> | <a id="linkLogout" href="#"></a></h2>
+            <h2> <span id="titlePage"> New comic </span></h2>
+            <h2><span id="activeUsrName">User</span> | <a id="linkLogout" href="#" onclick="closeSession()">logout</a></h2>
         </div>   
         
         <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="login.html">Login</a></li>
-
+            	<li class="menuitem"><a href="index.html">Home</a></li>
+                <li class="menuitem" id="adminLink"><a href="newComics.html">Admin</a></li>
+                <li class="menuitem"><a href="profile.html">Profile</a></li>
             </ul>
         </div>
 
@@ -53,7 +54,7 @@
         
             <div id="content_top"></div>
             <div id="content_main">
-                <h2>Please fill your information </h2>
+                <h2>Please fill the comic information </h2>
                 <p>&nbsp;</p>
                	<p>&nbsp;</p>
 
@@ -70,70 +71,119 @@
                     <tr>
                         <td></td>
                         <td>
-                            <span id="errorName" class="errorMsg">7 characters at least are requiered</span>
+                            <span id="errorName" class="errorMsg">Only introduce valid characters</span>
                         </td>
                     </tr>
-                    <!--pwd-->
+                    <!--creator-->
                     <tr>
                         <td>
-                            Password:
+                            Creator:
                         </td>
                         <td>
-                            <input type="Password" id="txtPwd"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            
-                        </td>
-                    </tr>
-                    <!--pwd-->
-                    <tr>
-                        <td>
-                            Confirm Password:
-                        </td>
-                        <td>
-                            <input type="Password" id="txtPwdCon"/>
+                            <input type="text" id="txtCreator"/>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <span id="errorPwd" class="errorMsg">7 characters at least are requiered</span>
+                            <span id="errorCreator" class="errorMsg">Only introduce valid characters</span>
                         </td>
                     </tr>
-                    <!--email-->
+                    <!--date-->
                     <tr>
                         <td>
-                            Email:
+                            Date(aaaa/mm/dd):
                         </td>
                         <td>
-                            <input type="text" id="txtEmail"/>
+                            <input type="text" id="txtDate"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <span id="errorDate" class="errorMsg">Only introduce valid characters</span>
+                        </td>
+                    </tr>
+                    <!--Edition-->
+                    <tr>
+                        <td>
+                            Edition:
+                        </td>
+                        <td>
+                            <input type="text" id="txtEdition"/>
                         </td>
                     </tr>
                     <tr>
                          <td></td>
                         <td>
-                            <span id="errorEmail" class="errorMsg">introduce a valida email direction</span>
+                            <span id="errorEdition" class="errorMsg">Only introduce valid characters</span>
+                        </td>
+                    </tr>
+                    <!--genre-->
+                    <tr>
+                        <td>
+                            Genre:
+                        </td>
+                        <td>
+                            <input type="text" id="txtGenre"/>
                         </td>
                     </tr>
                     <tr>
                          <td></td>
                         <td>
-                            <span id="goodRegister" class="goodMsg">introduce a valida email direction</span>
+                            <span id="errorGenre" class="errorMsg">Only introduce valid characters</span>
+                        </td>
+                    </tr>
+                    <!--Main character-->
+                    <tr>
+                        <td>
+                            Main character:
+                        </td>
+                        <td>
+                            <input type="text" id="txtCharacter"/>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                        <td>
+                            <span id="errorCharacter" class="errorMsg">Only introduce valid characters</span>
+                        </td>
+                    </tr>
+                    <!--cover-->
+                    <tr>
+                        <td>
+                            Cover:
+                        </td>
+                        <td>
+                            <input type="text" id="txtCover"/>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                        <td>
+                            <span id="errorCover" class="errorMsg">Introduce a valid cover page (jpg file)</span>
+                        </td>
+                    </tr>
+
+
+
+                    <!--General messagelabels-->
+                    <tr>
+                         <td></td>
+                        <td>
+                            <span id="goodRegister" class="goodMsg">Comic has been added to the catalog</span>
                         </td>
                     </tr>
                      <tr>
                          <td></td>
                         <td>
-                            <span id="userExist" class="errorMsg">User already exists!!!</span>
+                            <span id="comicExist" class="errorMsg">The comic already exits!!</span>
                         </td>
                     </tr>
                     <!--submit-->
                     <tr>
                         <td colspan="2" id="rowBtnRegister">
-                            <input type="button" id="btnRegister" value="Register" onclick="saveUser()">
+                            <input type="button" id="btnRegister" value="Register" onclick="saveComic()">
                         </td>
                     </tr>
                 </table>
@@ -169,6 +219,7 @@
 
             
 <script type="text/javascript" src="../js/carousel.js"></script>
-<script src="../js/register.js"></script>
+<script src="../js/globalData.js"></script>
+<script src="../js/newComic.js"></script>
 </body>
 </html>

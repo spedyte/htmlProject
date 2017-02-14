@@ -1,0 +1,10 @@
+#divDisclaimer{
+	height: 350px;
+	width: 100%;
+	direction:ltr; 
+    overflow:auto; 
+}
+
+body {
+	background-image:url(../images/fondo_8.jpg);
+}

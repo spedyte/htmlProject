@@ -14,3 +14,10 @@ section{
 	float: left;
 	box-shadow: 0 0 0 10px green;
 }
+
+#divDisclaimer{
+	height: 440px;
+	width: 100%;
+	direction:ltr; 
+    overflow:auto; 
+}

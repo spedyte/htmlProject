@@ -17,3 +17,13 @@
 	direction:ltr; 
     overflow:auto; 
 }
+
+
+#copyright{
+	color: white;
+}
+
+#gotoCopyright {
+	text-decoration: none;
+	color: white;
+}
